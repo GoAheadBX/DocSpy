@@ -1,4 +1,6 @@
-﻿using DocSpy.Documents;
+﻿using DocSpy.Cities;
+using DocSpy.Countries;
+using DocSpy.Documents;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -24,6 +26,16 @@ namespace DocSpy.EntityFrameworkCore
                b.ToTable(DocSpyConsts.DbTablePrefix + "Document", DocSpyConsts.DbSchema);
                b.ConfigureByConvention();
            });
+            builder.Entity<City>(b =>
+            {
+                b.ToTable(DocSpyConsts.DbTablePrefix + "City", DocSpyConsts.DbSchema);
+                b.ConfigureByConvention();
+            });
+            builder.Entity<Country>(b =>
+            {
+                b.ToTable(DocSpyConsts.DbTablePrefix + "Country", DocSpyConsts.DbSchema);
+                b.ConfigureByConvention();
+            });
         }
     }
 }

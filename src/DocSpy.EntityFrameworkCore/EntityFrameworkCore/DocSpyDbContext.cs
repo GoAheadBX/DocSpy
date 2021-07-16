@@ -6,6 +6,8 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity;
 using Volo.Abp.Users.EntityFrameworkCore;
+using DocSpy.Cities;
+using DocSpy.Countries;
 
 namespace DocSpy.EntityFrameworkCore
 {
@@ -27,6 +29,8 @@ namespace DocSpy.EntityFrameworkCore
          * Also map them inside DocSpyDbContextModelCreatingExtensions.ConfigureDocSpy
          */
         public DbSet<Document> Documents { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Country> Countries { get; set; }
         public DocSpyDbContext(DbContextOptions<DocSpyDbContext> options)
             : base(options)
         {

@@ -86,7 +86,7 @@ namespace DocSpy.DocumentSpyFunction
             watcher.EnableRaisingEvents = true; //开启提交事件
 
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         private void OnChanged(object sender, FileSystemEventArgs e)

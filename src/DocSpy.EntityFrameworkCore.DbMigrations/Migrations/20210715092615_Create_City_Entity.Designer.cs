@@ -3,6 +3,7 @@ using System;
 using DocSpy.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace DocSpy.Migrations
 {
     [DbContext(typeof(DocSpyMigrationsDbContext))]
-    partial class DocSpyMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210715092615_Create_City_Entity")]
+    partial class Create_City_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
