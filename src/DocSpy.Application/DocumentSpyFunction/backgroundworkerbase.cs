@@ -1,6 +1,6 @@
 ﻿namespace docspy.documentspyfunction
 {
-    internal class backgroundworkerbase
+    public class backgroundworkerbase
     {
     }
 }
