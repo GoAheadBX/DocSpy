@@ -48,5 +48,21 @@ namespace DocSpy.CountryFunction
             var TheCountry = SelectedCountry.ToList();
             TheCountry[0].Border = multiPolygon ;
         }
+
+        public double GetCountryArea(string Name)
+        {
+
+            IEnumerable<Country> SelectedCountry =
+                from country in Repository
+                where country.CountryName == Name
+                select country;
+
+            if (SelectedCountry == null)
+            {
+                throw new NotImplementedException();
+            }
+            var TheCountry = SelectedCountry.ToList();
+            return TheCountry[0].Border.Area;
+        }
     }
 }

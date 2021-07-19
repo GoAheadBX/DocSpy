@@ -36,17 +36,17 @@ namespace DocSpy.CityFunction
         public async Task<List<CityDto>> GetCityLocation(string Name)
         {
 
-            IEnumerable<City> SelectedDocument =
+            IEnumerable<City> SelectedCity =
                 from city in Repository
                 where city.Name == Name
                 select city;
 
-            if (SelectedDocument == null)
+            if (SelectedCity == null)
             {
                 throw new NotImplementedException();
             }
 
-            var entityDto = await MapToGetListOutputDtosAsync(SelectedDocument.ToList());
+            var entityDto = await MapToGetListOutputDtosAsync(SelectedCity.ToList());
             return entityDto;
         }
 
