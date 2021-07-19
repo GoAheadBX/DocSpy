@@ -3,6 +3,7 @@ using System;
 using DocSpy.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace DocSpy.Migrations
 {
     [DbContext(typeof(DocSpyMigrationsDbContext))]
-    partial class DocSpyMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210716075452_Create_Country_Entity")]
+    partial class Create_Country_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,7 +73,7 @@ namespace DocSpy.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<MultiPolygon>("Border")
+                    b.Property<Geometry>("Border")
                         .HasColumnType("geometry");
 
                     b.Property<string>("ConcurrencyStamp")

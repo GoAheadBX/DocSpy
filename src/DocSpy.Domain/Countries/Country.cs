@@ -13,8 +13,10 @@ namespace DocSpy.Countries
     {
         public string CountryName { get; set; }
 
-        //[Column(TypeName = "geography")]
-        public Geometry Border { get; set; }
+        //[Column(TypeName = "MultiPolygon")]
+        //public Geometry Border { get; set; }
+        public MultiPolygon Border { get; set; }
+        //public List<Polygon> Borders { get; set; }
 
     }
 }

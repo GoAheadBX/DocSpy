@@ -23,21 +23,26 @@ namespace DocSpy.Cities
         {
             if (await _cityRepository.GetCountAsync() <= 0)
             {
+                var citya = new City
+                {
+                    Name = "Beijing",
+                    Location = new Point(122.333056, 47.609722, 12) { SRID = 4326 }
+                };
+                citya.Location.M = 1;
                 await _cityRepository.InsertAsync(
-                    new City
-                    {
-                        Name = "Beijing",
-                        Location= new Point(122.333056, 47.609722, 12) { SRID = 4326 }
-            },
+                    citya,
                     autoSave: true
                 );
 
+                var cityb = new City
+                {
+                    Name = "Shanghai",
+                    Location = new Point(122.333056, 35.609722, 14) { SRID = 4326 }
+                };
+                cityb.Location.M = 2;
+
                 await _cityRepository.InsertAsync(
-                    new City
-                    {
-                        Name = "Shanghai",
-                        Location = new Point(122.333056, 23.609722, 13) { SRID = 4326 }
-            },
+                    cityb,
                     autoSave: true
                 );
             }

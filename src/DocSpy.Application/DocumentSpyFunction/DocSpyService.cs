@@ -22,7 +22,6 @@ namespace DocSpy.DocumentSpyFunction
         [HttpGet("{Name}")]
         public async Task<List<DocDto>> SqlQuery(string Name)
         {
-
             IEnumerable<Document> SelectedDocument =
                 from document in Repository
                 where document.Name == Name

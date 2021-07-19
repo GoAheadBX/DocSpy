@@ -50,18 +50,6 @@ namespace DocSpy.CityFunction
             return entityDto;
         }
 
-        /* public async Task<List<CityDto>> GetNearestCity(Geometry currentLocation)
-        {
-            IEnumerable<City> nearestCity = (IEnumerable<City>)Repository
-                .OrderBy(c => c.Location.Distance(currentLocation))
-                .FirstOrDefault();
-            
-            if (nearestCity == null)
-            {
-                throw new NotImplementedException();
-            }
-            var NearestCity = await MapToGetListOutputDtosAsync(nearestCity.ToList());
-            return NearestCity;
-        }*/
+
     }
 }

@@ -5,6 +5,8 @@ using DocSpy.Cities;
 using DocSpy.CityFunction;
 using NetTopologySuite.Geometries;
 using DocSpy.CityFuntion;
+using DocSpy.CountryFunction;
+using DocSpy.Countries;
 
 namespace DocSpy
 {
@@ -18,10 +20,19 @@ namespace DocSpy
             CreateMap<Document, DocDto>();
             CreateMap<CreateUpdateDocDto, Document>();
             CreateMap<City, CityDto>();
-            CreateMap<CreateUpdateCityDto, City>();
+            CreateMap<CreateUpdateCityDto, City>();           
+            CreateMap<Country, CountryDto>();
+            CreateMap<CreateUpdateCountryDto, Country>();
             CreateMap<Point, PointDto>();
             CreateMap<CreateUpdatePointDto, Point>();
-
+            CreateMap<MultiPolygon, MultiPolygonDto>();
+            CreateMap<CreateUpdateMultiPolygonDto, MultiPolygon>();
+            CreateMap<Polygon, PolygonDto>();
+            CreateMap<CreateUpdatePolygonDto, Polygon>();
+            CreateMap<LinearRing, LinearRingDto>();
+            CreateMap<CreateUpdateLinearRingDto, LinearRing>();
+            CreateMap<Coordinate, CoordinateDto>();
+            CreateMap<CreateUpdateCoordinateDto, Coordinate>();
         }
     }
 }
