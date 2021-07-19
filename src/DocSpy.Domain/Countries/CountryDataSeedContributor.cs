@@ -33,7 +33,7 @@ namespace DocSpy.Countries
                 //pointb.Z = 4;
                 Coordinate pointc = new Coordinate(1, 1);
                 Coordinate pointd = new Coordinate(1, 0);
-                Coordinate[] points = { pointa,pointb,pointc,pointd,pointa};
+                Coordinate[] points = { pointa, pointb, pointc, pointd, pointa};
                
 
                 LinearRing lineara = new LinearRing(points);
@@ -41,7 +41,7 @@ namespace DocSpy.Countries
                 Polygon polygon = new Polygon(lineara);
                 Polygon[] polygons = { polygon};
 
-                MultiPolygon multiPolygon = new MultiPolygon(polygons);
+                MultiPolygon multiPolygon = new MultiPolygon(polygons) { SRID = 4326 };
 
                 countrya.Border = multiPolygon;
 

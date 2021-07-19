@@ -6,6 +6,6 @@ namespace DocSpy.CountryFunction
 {
     public class CreateUpdateLinearRingDto
     {
-        public CreateUpdateCoordinateDto coordinate { get; set; }
+        public CreateUpdateCoordinateDto[] coordinate { get; set; }
     }
 }

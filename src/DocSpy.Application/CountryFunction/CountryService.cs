@@ -17,9 +17,9 @@ namespace DocSpy.CountryFunction
         ICountryService
     {
         public CountryService(IRepository<Country, Guid> repository) : base(repository)
-        {            
+        {
         }
-
+        
         public void PutCountryBorder(string Name, CreateUpdateLinearRingDto points)
         {
             IEnumerable<Country> SelectedCountry =
@@ -32,17 +32,21 @@ namespace DocSpy.CountryFunction
                 throw new NotImplementedException();
             }
 
-            LinearRing lineara = ObjectMapper.Map<CreateUpdateLinearRingDto, LinearRing>(points);
+            Coordinate[] CoorPoint = new Coordinate[points.coordinate.Length];
 
-            //LinearRing lineara = new LinearRing(CoorPoint);
-            
+            for (int i =0; i < points.coordinate.Length; i++)
+            {
+                CoorPoint[i] = ObjectMapper.Map<CreateUpdateCoordinateDto, Coordinate>(points.coordinate[i]);
+            }
+
+            LinearRing lineara = new LinearRing(CoorPoint);
+
             Polygon polygon = new Polygon(lineara);
             Polygon[] polygons = { polygon };
 
-            MultiPolygon multiPolygon = new MultiPolygon(polygons);
+            MultiPolygon multiPolygon = new MultiPolygon(polygons) { SRID = 4326 };
             var TheCountry = SelectedCountry.ToList();
-            TheCountry[0].Border = multiPolygon;
-
+            TheCountry[0].Border = multiPolygon ;
         }
     }
 }
