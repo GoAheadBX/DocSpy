@@ -8,7 +8,6 @@ namespace DocSpy.CountryFunction
     public class CreateUpdateCountryDto
     {
         public string CountryName { get; set; }
-        public MultiPolygonDto Border { get; set; }
-            
+        //public MultiPolygonDto Border { get; set; }            
     }
 }

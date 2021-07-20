@@ -33,20 +33,35 @@ namespace DocSpy.CountryFunction
             }
 
             Coordinate[] CoorPoint = new Coordinate[points.coordinate.Length];
+            Polygon polygon;
+            List<Polygon> polygons = new List<Polygon>();
 
+            int j = 0;
             for (int i =0; i < points.coordinate.Length; i++)
             {
                 CoorPoint[i] = ObjectMapper.Map<CreateUpdateCoordinateDto, Coordinate>(points.coordinate[i]);
+
+                if (CoorPoint[i].X == CoorPoint[j].X && CoorPoint[i].Y == CoorPoint[j].Y && i != j)
+                {
+                    Coordinate[] coorpoint = new Coordinate[i - j + 1];
+                    Array.ConstrainedCopy(CoorPoint, j, coorpoint, 0, i - j + 1);
+                    polygon = new Polygon(new LinearRing(coorpoint));
+                    polygons.Add(polygon);
+                    j = i + 1;
+                }
             }
 
-            LinearRing lineara = new LinearRing(CoorPoint);
-
-            Polygon polygon = new Polygon(lineara);
-            Polygon[] polygons = { polygon };
-
-            MultiPolygon multiPolygon = new MultiPolygon(polygons) { SRID = 4326 };
-            var TheCountry = SelectedCountry.ToList();
-            TheCountry[0].Border = multiPolygon ;
+            try
+            {
+                MultiPolygon multiPolygon = new MultiPolygon(polygons.ToArray()) { SRID = 4326 };
+                var TheCountry = SelectedCountry.ToList();
+                TheCountry[0].Border = multiPolygon;
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            
         }
 
         public double GetCountryArea(string Name)

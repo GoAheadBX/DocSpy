@@ -10,6 +10,6 @@ namespace DocSpy.CityFuntion
         public double Y{ get; set; }
         public double Z { get; set; }
 
-        //public double M { get; set; }
+        public double M { get; }
     }
 }

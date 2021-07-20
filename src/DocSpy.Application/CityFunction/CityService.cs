@@ -19,6 +19,21 @@ namespace DocSpy.CityFunction
         {
         }
 
+        public void PutCityFourDemsion(string Name, double m)
+        {
+            IEnumerable<City> SelectedCity =
+                from city in Repository
+                where city.Name == Name
+                select city;
+
+            if (SelectedCity == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            var entity = SelectedCity.ToList();
+            entity[0].Location.M = m;
+        }
         public CityDto GetNearestCity(CreateUpdatePointDto currentLocation)
         {  
             var nearestCity = Repository.OrderBy(c => c.Location.Distance(ObjectMapper
