@@ -5,14 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.Domain.Entities;
 
 namespace DocSpy.Countries
 {
-    public class Country : AuditedAggregateRoot<Guid>
+    public class Country : AggregateRoot<Guid>
     {
-        public string CountryName { get; set; }
-
+        public string CountryName { get; set; }        
         //[Column(TypeName = "MultiPolygon")]
         //public Geometry Border { get; set; }
         public MultiPolygon Border { get; set; }

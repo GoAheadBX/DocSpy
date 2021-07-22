@@ -6,7 +6,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace DocSpy.CountryFunction
 {
-    public class CountryDto : AuditedEntityDto<Guid>
+    public class CountryDto : EntityDto<Guid>
     {
         public string CountryName { get; set; }
         public MultiPolygonDto Border { get; set; }
