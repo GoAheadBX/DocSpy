@@ -6,7 +6,7 @@ using Volo.Abp.Application.Services;
 
 namespace DocSpy.CountryFunction
 {
-    public interface ICountryService : ICrudAppService<CountryDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateCountryDto>
+    public interface ICountryService : ICrudAppService<CountryDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateCountryDto> 
     {
     }
 }

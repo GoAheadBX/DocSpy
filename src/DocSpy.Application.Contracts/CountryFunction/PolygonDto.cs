@@ -6,10 +6,6 @@ namespace DocSpy.CountryFunction
 {
     public class PolygonDto
     {
-        public double Length { get; }
- 
-        public double Area { get; }
-
-        public LinearRingDto linearRing { get; set; }
+        public CoordinateDto[] Coordinates { get; set; }
     }
 }

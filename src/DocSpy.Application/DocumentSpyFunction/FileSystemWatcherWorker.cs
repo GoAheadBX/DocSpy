@@ -28,8 +28,6 @@ namespace DocSpy.DocumentSpyFunction
         protected IServiceScopeFactory ServiceScopeFactory { get; }
         public FileSystemWatcherWorker(IConfiguration configuration, ILogger<FileSystemWatcherWorker> logger, IServiceScopeFactory serviceScopeFactory)
         {
-            
-
             _rootDirPath = configuration["FileMonitor:RootDir"];
             if (_rootDirPath.IsNullOrWhiteSpace())
                 _rootDirPath = Directory.GetCurrentDirectory();

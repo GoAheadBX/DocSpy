@@ -29,8 +29,6 @@ namespace DocSpy
             CreateMap<CreateUpdateMultiPolygonDto, MultiPolygon>();
             CreateMap<Polygon, PolygonDto>();
             CreateMap<CreateUpdatePolygonDto, Polygon>();
-            CreateMap<LinearRing, LinearRingDto>();
-            CreateMap<CreateUpdateLinearRingDto, LinearRing>();
             CreateMap<Coordinate, CoordinateDto>();
             CreateMap<CreateUpdateCoordinateDto, Coordinate>();
         }
