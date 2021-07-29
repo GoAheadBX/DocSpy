@@ -157,6 +157,72 @@ namespace DocSpy.CountryFunction
             List<CountryDto> listCountriesDto = await MapToGetListOutputDtosAsync(listCountries);
             return listCountriesDto;
         }
+
+        public async Task<CountryDto> PostCountryBorderByListOfJsonFileAsync(List<IFormFile> jsonFiles, string Name)
+        {
+            Country theCountry = new Country();
+            theCountry.CountryName = Name;
+            SetIdForGuids(theCountry);
+            await Repository.InsertAsync(theCountry, true);
+
+            var polygonsList = new List<Polygon>();
+
+            foreach (var jsonFile in jsonFiles)
+            {
+                JObject JsonObject;
+                using (var stream = jsonFile.OpenReadStream())
+                {
+                    StreamReader streamReader = new StreamReader(stream, Encoding.UTF8);
+                    JsonObject = JObject.Parse(streamReader.ReadToEnd());
+                    streamReader.Dispose();
+                }
+                JToken jfts = JsonObject["features"];
+                List<JToken> jlst = jfts.ToList();
+
+                for (int i = 0; i < jlst.Count; i++)
+                {
+                    JToken gprop = jlst[i]["properties"];
+                    JProperty JName = (JProperty)gprop.ElementAt(1);
+
+                    JToken geoinf = jlst[i]["geometry"];
+                    JProperty Jcoordinates = (JProperty)geoinf.ElementAt(1);
+
+                    var polygons = JsonConvert.DeserializeObject<List<List<List<List<double>>>>>(Jcoordinates.Value.ToString());
+                    
+                    foreach (var polygonList in polygons)
+                    {
+                        foreach (var coordinates in polygonList)
+                        {
+                            var Coordinates = new List<Coordinate>();
+                            foreach (var coordinate in coordinates)
+                            {
+                                var oneCoordinate = new Coordinate(coordinate[0], coordinate[1]);
+                                Coordinates.Add(oneCoordinate);
+                            }
+                            LinearRing OneLinearRing = new LinearRing(Coordinates.ToArray());
+                            Polygon OnePloygon = new Polygon(OneLinearRing);
+                            polygonsList.Add(OnePloygon);
+                        }
+                    }
+                }
+            }
+
+            MultiPolygon MultiPolygon = new MultiPolygon(polygonsList.ToArray());
+            try
+            {
+                theCountry.Border = MultiPolygon;
+                await Repository.UpdateAsync(theCountry);
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+
+            CountryDto theCountryDto = await MapToGetListOutputDtoAsync(theCountry);
+            return theCountryDto;
+
+        }
+
         public double GetCountryArea(string Name)
         {
 
